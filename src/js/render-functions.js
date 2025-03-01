@@ -31,19 +31,19 @@ export function galleryElemTemplate( image ) {
           alt="${tags.slice(0, tags.indexOf(',') || tags.lehght - 1 )}"
         />
         <ul class="container">
-          <li class="thumb-data-item">
+          <li class="card-item">
             <h2 class="info-title">Likes</h2>
             <p class="info-data">${likes}</p>
           </li>
-          <li class="thumb-data-item">
+          <li class="card-item">
             <h2 class="info-title">Views</h2>
             <p class="info-data">${views}</p>
           </li>
-          <li class="thumb-data-item">
+          <li class="card-item">
             <h2 class="info-title">Comments</h2>
             <p class="info-data">${comments}</p>
           </li>
-          <li class="thumb-data-item">
+          <li class="card-item">
             <h2 class="info-title">Downloads</h2>
             <p class="info-data">${downloads}</p>
           </li>
@@ -52,34 +52,35 @@ export function galleryElemTemplate( image ) {
     </li>`;
 }
   
-export function galleryAllTemplate(images) {
-  gallery.innerHTML = images.map(galleryElemTemplate).join('');
+export function galleryAllTemplate(images, pageNumber) {
+  if ( pageNumber === 1 ) {
+    gallery.innerHTML = '';
+  }
+  gallery.insertAdjacentHTML('beforeend', images.map(galleryElemTemplate).join(''));
   modalBox.refresh();
   hideLoader();
 }
 
 
 export function showLoader(){
-  gallery.classList.add('hidden')
-  loader.classList.remove('hidden')
+  loader.classList.remove('hidden');
 }
 
 export function hideLoader(){
-  gallery.classList.remove('hidden')
-  loader.classList.add('hidden')
+  loader.classList.add('hidden');
 }
 
 
-export function showMessage() {
+export function showMessage(message, color='#EF4040') {
   iziToast.show({
     position: 'topRight',
-    message: 'Sorry, there are no images matching your search query. Please try again!',
+    message: message,
     messageSize: '16px',
     messageLineHeight: '24px',
     messageColor: 'white',
     iconUrl: iconNoResults,
     maxWidth: '390px',
-    backgroundColor: '#EF4040',
+    backgroundColor: color,
     closeOnClick: true,
     close: false,
   });

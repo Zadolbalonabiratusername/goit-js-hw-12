@@ -102,6 +102,12 @@ button:hover {
   background-color: #6c8cff;
 }
 
+.load-more {
+  margin: 0 auto;
+  width: 125px;
+}
+
+
 
 
 .gallery {
